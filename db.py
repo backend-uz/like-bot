@@ -8,7 +8,7 @@ class LikeDB:
         try:
             with open(self.file_path, 'r') as f:
                 self.db = json.load(f)
-        except FileNotFoundError:
+        except:
             self.db = {}
             with open(self.file_path, 'w') as f:
                 json.dump(self.db, f)
@@ -19,13 +19,13 @@ class LikeDB:
         """
         pass
 
-    def all_likes(self):
+    def all_likes(self, user_id):
         """
         Count all users likes
         """
         pass
 
-    def all_dislikes(self):
+    def all_dislikes(self, user_id):
         """
         Count all users dislikes
         """
