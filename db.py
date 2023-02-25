@@ -11,14 +11,22 @@ class LikeDB:
         except:
             self.db = {}
             with open(self.file_path, 'w') as f:
-                json.dump(self.db, f)
-
+                json.dump(self.db, f, indent=4)
+    
     def save(self):
         """
         Save the database to the file
         """
-        pass
+        with open(self.file_path, 'w') as f:
+            json.dump(self.db, f, indent=4)
 
+    def add_student(self, user_id):
+        if self.db.get(user_id) == None:
+            self.db[user_id] = {"like":0, "dislike":0}
+
+        self.save()
+        return self.db[user_id]
+    
     def all_likes(self, user_id):
         """
         Count all users likes
@@ -41,7 +49,11 @@ class LikeDB:
         Returns:
             The number of likes and dislikes for the post
         """
-        pass
+        user = self.db.get(user_id)
+        user['like'] += 1
+        self.save()
+        
+        return user
 
     def add_dislike(self, user_id:str):
         """
@@ -53,5 +65,9 @@ class LikeDB:
         Returns:
             The number of likes and dislikes for the post
         """
-        pass
+        user = self.db.get(user_id)
+        user['dislike'] += 1
+        self.save()
+        
+        return user
             
