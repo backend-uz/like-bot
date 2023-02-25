@@ -31,13 +31,15 @@ class LikeDB:
         """
         Count all users likes
         """
-        pass
+        likes = self.db.get(user_id)
+        return likes['like']
 
     def all_dislikes(self, user_id):
         """
         Count all users dislikes
         """
-        pass
+        dislikes = self.db.get(user_id)
+        return dislikes['dislike']
 
     def add_like(self, user_id:str):
         """
