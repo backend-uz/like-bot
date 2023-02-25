@@ -23,8 +23,8 @@ class LikeDB:
     def add_student(self, user_id):
         if self.db.get(user_id) == None:
             self.db[user_id] = {"like":0, "dislike":0}
-
-        self.save()
+            self.save()
+        
         return self.db[user_id]
     
     def all_likes(self, user_id):
